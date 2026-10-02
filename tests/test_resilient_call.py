@@ -5,7 +5,7 @@ import sys
 import time
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools" / "org_lib"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from resilient_call import CircuitOpenError, FatalError, ResilientCaller  # noqa: E402
 
