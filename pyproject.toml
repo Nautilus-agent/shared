@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nautilus-shared"
+version = "0.1.0"
+description = "Shared tools for all Nautilus agents: circuit breaker, stop protocol, output gate, telemetry, fuel orders"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+
+# 平铺单文件模块(无包结构),显式枚举——README Install 段 pip install git+ 自此可用
+# (2026-10-03 flywheel 实测红灯修复:此前缺打包文件不可装)
+[tool.setuptools]
+py-modules = [
+  "a2a_alert",
+  "behavioral_kpi",
+  "brain_telemetry",
+  "github_bootstrap",
+  "output_gate",
+  "post_fuel_orders",
+  "resilient_call",
+  "stop_protocol",
+]
