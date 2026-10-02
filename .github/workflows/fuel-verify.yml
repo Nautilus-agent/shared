@@ -1,0 +1,31 @@
+name: Fuel Verification
+on:
+  pull_request:
+    paths: ['trajectories/**']
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Validate trajectories
+        run: |
+          python -c "
+          import json, pathlib, sys
+          ok = 0; bad = 0
+          for f in pathlib.Path('trajectories').glob('*.json'):
+              try:
+                  d = json.loads(f.read_text())
+                  assert 'qid' in d, 'missing qid'
+                  assert 'verdict' in d, 'missing verdict'
+                  assert 'label_origin' in d, 'missing label_origin'
+                  assert d['label_origin'] != 'LLM', 'LLM self-report not allowed'
+                  assert 'trajectory' in d, 'missing trajectory'
+                  ok += 1
+                  print(f'  OK {f.name}')
+              except Exception as e:
+                  print(f'  BAD {f.name}: {e}'); bad += 1
+          print(f'valid={ok} bad={bad}')
+          sys.exit(1 if bad > 0 else 0)
+          "
