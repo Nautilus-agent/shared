@@ -1,0 +1,23 @@
+{
+  "schema": "trajectories-manifest-v1",
+  "channel": "prod-field-tree-v1:trajectories/",
+  "spec": "FUEL_ORDER_SPEC_V1 s2",
+  "accepted": [
+    {
+      "file": "b-turbo-f006.json",
+      "bounty": "b-turbo-f006",
+      "status": "four-gates-passed",
+      "date": "2026-10-03",
+      "milestone": "M1"
+    }
+  ],
+  "batches": {
+    "r78-batch2": {
+      "bounties": "b-turbo-f041..f060",
+      "posted": "2026-10-04",
+      "status": "open-awaiting-claim",
+      "kpi": "pass_gate>=40%"
+    }
+  },
+  "notes": "四验门 owner=flywheel;verdict 三态含负样本;label_origin 白名单=verifier/official_answer"
+}
