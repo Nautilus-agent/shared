@@ -1,7 +1,7 @@
 name: Fuel Verification
 on:
+  push:
   pull_request:
-    paths: ['trajectories/**']
 jobs:
   verify:
     runs-on: ubuntu-latest
@@ -13,19 +13,22 @@ jobs:
         run: |
           python -c "
           import json, pathlib, sys
+          root = pathlib.Path('trajectories')
+          files = sorted(root.rglob('*.json')) if root.exists() else []
           ok = 0; bad = 0
-          for f in pathlib.Path('trajectories').glob('*.json'):
+          for f in files:
               try:
                   d = json.loads(f.read_text())
+                  assert isinstance(d, dict), 'not a json object'
                   assert 'qid' in d, 'missing qid'
                   assert 'verdict' in d, 'missing verdict'
                   assert 'label_origin' in d, 'missing label_origin'
                   assert d['label_origin'] != 'LLM', 'LLM self-report not allowed'
                   assert 'trajectory' in d, 'missing trajectory'
                   ok += 1
-                  print(f'  OK {f.name}')
+                  print(f'  OK {f}')
               except Exception as e:
-                  print(f'  BAD {f.name}: {e}'); bad += 1
-          print(f'valid={ok} bad={bad}')
+                  print(f'  BAD {f}: {e}'); bad += 1
+          print(f'files={len(files)} valid={ok} bad={bad}')
           sys.exit(1 if bad > 0 else 0)
           "
