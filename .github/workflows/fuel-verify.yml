@@ -16,6 +16,10 @@ jobs:
           root = pathlib.Path('trajectories')
           files = sorted(root.rglob('*.json')) if root.exists() else []
           ok = 0; bad = 0
+          if not files:
+              print('::warning::EMPTY - trajectories/ 下 0 个 *.json,四验字段门本轮未校验任何轨迹')
+              print('files=0 valid=0 bad=0 mode=WARN(阶段A:空输入不阻断;阶段B改 fail-closed)')
+              sys.exit(0)
           for f in files:
               try:
                   d = json.loads(f.read_text())
@@ -30,5 +34,6 @@ jobs:
               except Exception as e:
                   print(f'  BAD {f}: {e}'); bad += 1
           print(f'files={len(files)} valid={ok} bad={bad}')
+          print(f'::warning::四验覆盖 {ok}/{len(files)} 个轨迹文件(qid/verdict/label_origin!=LLM/trajectory)')
           sys.exit(1 if bad > 0 else 0)
           "
