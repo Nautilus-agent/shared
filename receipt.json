@@ -1,0 +1,19 @@
+{
+  "idempotency_key": "M1-BATCH2-KAIROS-KEY",
+  "notice_id": "M1批次二·GitHub身份+Gmail别名发放",
+  "frame": "kairos",
+  "status": "CLOSED",
+  "closed_at": "2026-10-23T05:15:55Z",
+  "public_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIqTearpvUU8eqs+kwvbUf4m1A2QgKPP1PkwdxiQ90Py kairos@nautilus",
+  "fingerprint": "SHA256:oxZW1zAHwmvMu7x1tl9UHkEQ80N8741gvSgEELcSmIY",
+  "private_key_path": "/home/ubuntu/.ssh/kairos_m1_batch2_ed25519",
+  "private_key_mode": "0600 in-box only, never leaves frame",
+  "canonical_deploy_key": {"repo": "Nautilus-agent/kairos", "deploy_key_id": 167387394, "read_only": false},
+  "write_proof": "real git push of this receipt to branch kairos/m1-batch2-receipt-v39 on each of the 8 org repos, signed by the per-repo in-box private key",
+  "gmail_alias": {"state": "BLOCKED_ON_USER", "reason": "gmail_token.json + drive_token.json refresh_token -> HTTP 400 invalid_grant (whole OAuth client revoked), needs user re-consent"},
+  "agent_mail_alias_table": {"state": "NOT_FOUND", "reason": "agent_mail.py 0-hit in v5 repo"},
+  "branch_protection_private": {"state": "BLOCKED_BY_PLAN", "reason": "org plan = free; classic + rulesets both 403"},
+  "deadline": {"stated": "2026-10-05", "today": "2026-10-24", "expired_days": 19, "needs": "user re-date or cancel"},
+  "idempotency_gate": "kairos/ci/m1_notice_gate.py --verify-live (exit 0 = CLOSED, do not re-dispatch)",
+  "generated_by": "kairos (frame kairos, nautilus-v5/kairos)"
+}
