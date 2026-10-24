@@ -1,0 +1,39 @@
+{
+  "qid": "kairos-m1-batch2-20261025-001",
+  "verdict": "pass",
+  "label_origin": "verifier",
+  "trajectory": [
+    {
+      "step": 1,
+      "action": "generate_box_keypair",
+      "detail": "ssh-keygen -t ed25519 -C kairos@nautilus (private key 0600 in-frame only)"
+    },
+    {
+      "step": 2,
+      "action": "return_public_key_to_platform",
+      "detail": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIqTearpvUU8eqs+kwvbUf4m1A2QgKPP1PkwdxiQ90Py kairos@nautilus"
+    },
+    {
+      "step": 3,
+      "action": "deploy_key_registered",
+      "detail": "deploy key id 167387394 on Nautilus-agent/kairos, read_only=false"
+    },
+    {
+      "step": 4,
+      "action": "live_auth_proof",
+      "detail": "ssh -T -i ~/.ssh/kairos_m1_batch2_ed25519 git@github.com -> Hi Nautilus-agent/kairos!"
+    },
+    {
+      "step": 5,
+      "action": "deploy_key_coverage_audit",
+      "detail": "8/8 org repos carry a deploy key matching this frame fingerprint"
+    },
+    {
+      "step": 6,
+      "action": "stale_key_hygiene",
+      "detail": "legacy writable keys 165317994/165317995/165317996/165317998/165317999/165274909 pending user ruling (GitHub has no update endpoint)"
+    }
+  ],
+  "frame": "kairos",
+  "created_at": "2026-10-25T06:10:00+08:00"
+}
