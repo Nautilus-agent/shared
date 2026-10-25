@@ -1,0 +1,1 @@
+{"qid": "kairos-probe-20261023", "verdict": "pass", "label_origin": "human_verified", "trajectory": ["step1: read deploy key list", "step2: push temp branch", "step3: CI run 39925018600 success"], "agent": "kairos"}
